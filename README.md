@@ -15,5 +15,7 @@
 - Activer `Developer mode` (en haut a droite dans mon cas)
 - Ensuite vous devriez avoir le bouton `Load unpacked` qui apparait
 - Selectionner le dossier `plugin_chrome`
+- Puis aller sur un la parti CGU ou cookie d'un site (example : http://mentions-legales.lefigaro.fr/page/cgu)
+- cliquer sur le bouton `Check this website now!`
 
 Pour le moment le plugin/API fonctionne seulement en local, il faut 2 semaines de validation pour pouvoir en publier un.
