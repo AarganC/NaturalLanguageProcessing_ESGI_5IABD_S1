@@ -7,8 +7,8 @@
 
 ## Test du Plugin/API
 - Ouvrir un terminal
-- Activer l'environnement
-- Aller à la racine du projet `conda activate env_nlp`
+- Activer l'environnement `conda activate env_nlp`
+- Aller à la racine du projet
 - Lancer la commande `python quick_termofuse_api.py`
 - Ouvrir l'application `google chrome`
 - Dans l'url écrire `chrome://extensions/`
