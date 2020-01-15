@@ -2,7 +2,7 @@
 
 ## Utiliser l'environnement conda du Plugin/API
 - Aller à la racine du projet
-- Lancer la commande `conda env create -f conda/env_nlp.yaml`
+- Lancer la commande `conda env create -f conda_env/env_nlp.yaml`
 - Lancer la commande `conda activate env_nlp`
 
 ## Test du Plugin/API
