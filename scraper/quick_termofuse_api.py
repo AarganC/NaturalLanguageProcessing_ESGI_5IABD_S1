@@ -2,10 +2,85 @@ import re
 import time
 import requests
 import tldextract
+import numpy as np
+import pandas as pd
+import nltk
+import re
+import networkx as nx
+
+from nltk.tokenize import sent_tokenize
+from nltk.corpus import stopwords
+from sklearn.metrics.pairwise import cosine_similarity
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from urlextract import URLExtract
 from flask import Flask, jsonify, request, Response
+
+
+def remove_stopwords(sen, stop_words):
+    sen_new = " ".join([i for i in sen if i not in stop_words])
+    return sen_new
+
+def summarization(corpus: str, resultat: str):
+    sentences = sent_tokenize(corpus)
+
+    print("Debug - a")
+
+    word_embeddings = {}
+    f = open('../modele/Aargan/ressources/multilingual_embeddings.fr', encoding='utf8')
+    for line in f:
+        values = line.split()
+        word = values[0]
+        coefs = np.asarray(values[1:], dtype='float32')
+        word_embeddings[word] = coefs
+    f.close()
+
+    print("Debug - b")
+
+    clean_sentences = []
+    clean_sentences = pd.Series(sentences).str.replace("[^a-zA-Zàéêèç]" , " ")
+    clean_sentences = [sentence.lower() for sentence in clean_sentences]
+    clean_sentences = [sentence for sentence in clean_sentences if sentence != "" and sentence != " "]
+
+    print("Debug - c")
+
+    stop_words = stopwords.words('french')
+
+    clean_sentences = [remove_stopwords(r.split(), stop_words) for r in clean_sentences]
+
+    print("Debug - d")
+
+    sentence_vectors = []
+    for i in clean_sentences:
+        if len(i) != 0:
+            v = sum([word_embeddings.get(w, np.zeros((300,))) for w in i.split()])/(len(i.split()) + 0.001)
+        else:
+            v =np.zeros((300,))
+        sentence_vectors.append(v)
+
+    print("Debug - e")
+
+    sim_mat = np.zeros([len(sentences), len(sentences)])
+    for i in range(len(sentences)):
+        for j in range(len(sentences)):
+            if i != j:
+                sim_mat[i][j] = cosine_similarity(sentence_vectors[i].reshape(1,300), sentence_vectors[j].reshape(1, 300))[0,0]
+
+    print("Debug - f")
+
+    nx_graph = nx.from_numpy_array(sim_mat)
+    scores = nx.pagerank(nx_graph)
+
+    print("Debug - g")
+
+    ranked_sentences = sorted(((scores[i], s) for i, s in enumerate(sentences)), reverse=True)
+    for i in range(10):
+        resultat += str(ranked_sentences[i][1])
+
+    print("Debug - h")
+
+    return resultat
+
 
 app = Flask(__name__)
 
@@ -101,13 +176,22 @@ def scraper():
         # Debut du retour html
         yield '<h2>Scrapper</h2>'
         # Prediction
+        print("Debug - 6")
+        f = open("../files/cgu_figaro_full.txt", "w")
+        f.write(str(body_text_after))
+        f.close()
+        summariz = ""
+        summariz = summarization(body_text_after, summariz)
 
         # Envoi de la prediction sur le html
-        print("Debug - 6")
-        time.sleep(3)
-        yield body_text_after
+        print("Debug - 7")
+        yield summariz
 
     return Response(generate(), mimetype='text/html')
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
