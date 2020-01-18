@@ -28,7 +28,7 @@ def summarization(corpus: str, lang: str, resultat: list):
 
     word_embeddings = {}
     if lang == "fr":
-        f = open('../modele/Aargan/ressources/multilingual_embeddings.fr', encoding='utf8')
+        f = open('../modele/Aargan/ressources/vectors.txt', encoding='utf8')
     elif lang == "en":
         f = open('../modele/Aargan/ressources/glove.6B.100d.txt', encoding='utf8')
     else:
@@ -176,7 +176,8 @@ def scraper():
                                 soups.append(BeautifulSoup(driver.page_source, 'html.parser'))
                                 raise RuntimeError('Bad stuff happened.')
                             except Exception:
-                                logging.error('Failed.', exc_info=True)
+                                # logging.error('Failed.', exc_info=True)
+                                pass
 
         print("Debug - 4")
 
