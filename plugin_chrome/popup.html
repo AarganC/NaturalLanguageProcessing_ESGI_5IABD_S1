@@ -1,11 +1,103 @@
+
 <!doctype html>
 <html>
   <head>
-    <title>QuickTermOfUse</title>
+  	<style type="text/css">
+  		html, body {
+  height: 100%;
+  background-color:#C0C0C0;
+   background-repeat: no-repeat;
+ background-size: cover;
+  font-family: Times, sans-serif;
+
+}
+h1{
+	font-size: 40px;
+	font-family: sans-serif;
+}
+body {
+  display: grid;
+  font-family: Times, sans-serif;
+  color: #111;
+  height: 150px;
+  width: 400px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  padding-top: 0%;
+
+ 
+}
+
+.cta {
+  position: relative;
+  margin: auto auto 30px auto;
+  padding: 15px 22px;
+  transition: all 0.2s ease;
+}
+.cta:before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  display: block;
+  border-radius: 28px;
+  background:#4682B4;
+  width: 56px;
+  height: 56px;
+  transition: all 0.3s ease;
+}
+.cta span {
+  position:relative;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.cta svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #111;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+.cta:hover:before {
+  width: 100%;
+  background:#4682B4;
+}
+.cta:hover svg {
+  transform: translateX(0);
+}
+.cta:active {
+  transform: scale(0.96);
+}
+
+  	</style>
+  	  <title>Quick Term of use</title>
     <script src="popup.js"></script>
   </head>
-  <body>
-    <h1>QuickTermOfUse</h1>
-    <button id="checkPage">Check this website now!</button>
+
+     <body>
+
+ <center><h1>Quick Term of use</h1></center>
+   
+
+     	<a href="#" class="cta" id="checkPage">
+  <span>Check this website now!</span>
+  <svg width="13px" height="10px" viewBox="0 0 13 10">
+    <path d="M1,5 L11,5"></path>
+    <polyline points="8 1 12 5 8 9"></polyline>
+  </svg>
+</a>
+     	
   </body>
 </html>

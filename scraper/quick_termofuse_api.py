@@ -197,8 +197,14 @@ def scraper():
 
         print("Debug - 5")
 
+        body_style = "padding: 0px 100px 15px 100px;font-family: 'Source Sans Pro', sans-serif;"
+
         # Debut du retour html
-        yield '<h2>Scrapper</h2>'
+        yield '<html><head><link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">'
+        yield'<style type="text/css">h2 { font-size:40px; } body { height: 100%; background-color:#C0C0C0; display: grid; font-family: Times, sans-serif; color: #111; }</style>'
+        yield '</head>'
+        yield '<body style="' + body_style + '"><div style="margin-bottom: 50px;">'
+        yield "<h2>Conditions générales d'utilisation résumées</h2>"
         # Prediction
         print("Debug - 6")
         summariz = []
@@ -208,7 +214,8 @@ def scraper():
         # Envoi de la prediction sur le html
         print("Debug - 7")
         for x in summariz:
-            yield "<p>" + str(x)
+            yield '<p style="padding-bottom: 20px;">' + str(x)
+        yield'</div></body>'
 
     return Response(generate(), mimetype='text/html')
 
