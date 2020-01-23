@@ -17,9 +17,7 @@ if __name__ == "__main__":
         # print(file)
         f = open(file, 'r', encoding="ISO-8859-1")
         tmp = f.read()
-        #if tmp != '' and detect(tmp) == "fr":
-        if tmp != '':
-            # print(file)
+        if tmp != '' and detect(tmp) == "en":
             corpus.append(tmp)
             Nb_files += 1
         f.close()
@@ -27,7 +25,7 @@ if __name__ == "__main__":
     print("Nb_files = {}".format(Nb_files))
 
     final_sentences = []
-    f = open("resultat/CGU_FR.txt", "a")
+    f = open("resultat/CGU_EN.txt", "a")
     for sentence in corpus:
         sentences = nltk.sent_tokenize(sentence)
 
@@ -60,7 +58,7 @@ if __name__ == "__main__":
     for sentences in final_sentences:
         for sentence in sentences:
             if sentence != "":
-                if detect(sentence) == "fr":
+                if detect(sentence) == "en":
                     tokens = nltk.word_tokenize(sentence)
                     for token in tokens:
                         if len(token) > 1:
@@ -72,7 +70,7 @@ if __name__ == "__main__":
     print(3)
 
     most_freq = heapq.nlargest(200, wordfreq, wordfreq.get)
-    f = open("resultat/top_word.txt", "a")
+    f = open("resultat/top_word_en.txt", "a")
     for word in most_freq:
         f.write(str(word) + " " + str(wordfreq[word]) + "\n")
     f.close()

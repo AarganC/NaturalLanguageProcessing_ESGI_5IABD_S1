@@ -28,9 +28,10 @@ def summarization(corpus: str, lang: str, resultat: list):
 
     word_embeddings = {}
     if lang == "fr":
-        f = open('../modele/Aargan/ressources/vectors.txt', encoding='utf8')
+        f = open('../files/vectors_2.txt', encoding='utf8')
     elif lang == "en":
-        f = open('../modele/Aargan/ressources/glove.6B.100d.txt', encoding='utf8')
+        print("-- HERE --")
+        f = open('../files/vectors_en.txt', encoding='utf8')
     else:
         f = "error"
         resultat = "Error language '{}' is not supported".format(lang)
@@ -200,11 +201,20 @@ def scraper():
         body_style = "padding: 0px 100px 15px 100px;font-family: 'Source Sans Pro', sans-serif;"
 
         # Debut du retour html
-        yield '<html><head><link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">'
-        yield'<style type="text/css">h2 { font-size:40px; } body { height: 100%; background-color:#C0C0C0; display: grid; font-family: Times, sans-serif; color: #111; }</style>'
+        yield '<html><head><link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" ' \
+              'rel="stylesheet">'
+        yield'<style type="text/css">h2 { font-size:40px; } body { height: 100%; background-color:#C0C0C0; ' \
+             'display: grid; font-family: Times, sans-serif; color: #111; }</style>'
         yield '</head>'
         yield '<body style="' + body_style + '"><div style="margin-bottom: 50px;">'
         yield "<h2>Conditions générales d'utilisation résumées</h2>"
+        presentation = "Notre plugin réalise pour vous une sélection des dix phrases ayant le plus d'importance " \
+                       "dans tous leurs charabia, selon nous."
+        website = extract(url).domain
+        yield '<p style="padding-bottom: 20px; font-size: 20px;">' + str(presentation)
+        yield '<p style="padding-bottom: 20px; font-size: 22px;">' + "10 phrases permettant de comprendre rapidement " \
+                                    'les CGU du site <b style="text-transform: uppercase;">{}</b> :'.format(website)
+
         # Prediction
         print("Debug - 6")
         summariz = []
@@ -213,8 +223,10 @@ def scraper():
 
         # Envoi de la prediction sur le html
         print("Debug - 7")
+        i=1
         for x in summariz:
-            yield '<p style="padding-bottom: 20px;">' + str(x)
+            yield '<p style="padding-bottom: 20px; padding-left: 20px;">\t' + str(i) + " - " + str(x)
+            i += 1
         yield'</div></body>'
 
     return Response(generate(), mimetype='text/html')
