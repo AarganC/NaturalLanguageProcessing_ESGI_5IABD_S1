@@ -4,6 +4,7 @@ import pandas as pd
 import re
 import networkx as nx
 import logging
+import os
 
 from datetime import datetime
 from nltk.tokenize import sent_tokenize
@@ -25,11 +26,12 @@ def summarization(corpus: str, lang: str, resultat: list, website: str):
     sentences = list(dict.fromkeys(sentences))
     now = datetime.now()
     timestamp = datetime.timestamp(now)
+    name_file = "../files/Company_folder_files_clean/{}/cgu_{}_{}.txt".format(lang, website, timestamp)
 
-    f = open("files/Company_folder_files_clean/{}/cgu_{}_{}.txt".format(lang, website, timestamp), "a")
-    for word in sentences:
-        f.write(str(word))
-    f.close()
+    # f = open(name_file, "x")
+    # for word in sentences:
+    #     f.write(str(word))
+    # f.close()
 
     print("Debug - a")
     print("Langue = {}".format(lang))
