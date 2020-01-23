@@ -5,6 +5,7 @@ import re
 import networkx as nx
 import logging
 
+from datetime import datetime
 from nltk.tokenize import sent_tokenize
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
@@ -19,9 +20,16 @@ def remove_stopwords(sen, stop_words):
     return sen_new
 
 
-def summarization(corpus: str, lang: str, resultat: list):
+def summarization(corpus: str, lang: str, resultat: list, website: str):
     sentences = sent_tokenize(corpus)
     sentences = list(dict.fromkeys(sentences))
+    now = datetime.now()
+    timestamp = datetime.timestamp(now)
+
+    f = open("files/Company_folder_files_clean/{}/cgu_{}_{}.txt".format(lang, website, timestamp), "a")
+    for word in sentences:
+        f.write(str(word))
+    f.close()
 
     print("Debug - a")
     print("Langue = {}".format(lang))
@@ -219,11 +227,11 @@ def scraper():
         print("Debug - 6")
         summariz = []
         lang = detect(body_text_after)
-        summariz = summarization(body_text_after, lang, summariz)
+        summariz = summarization(body_text_after, lang, summariz, str(website))
 
         # Envoi de la prediction sur le html
         print("Debug - 7")
-        i=1
+        i = 1
         for x in summariz:
             yield '<p style="padding-bottom: 20px; padding-left: 20px;">\t' + str(i) + " - " + str(x)
             i += 1

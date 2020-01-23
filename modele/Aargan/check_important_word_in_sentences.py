@@ -17,8 +17,8 @@ if __name__ == "__main__":
         # print(file)
         f = open(file, 'r', encoding="ISO-8859-1")
         tmp = f.read()
-        #if tmp != '' and detect(tmp) == "fr":
-        if tmp != '':
+        if tmp != '' and detect(tmp) == "fr":
+        # if tmp != '':
             # print(file)
             corpus.append(tmp)
             Nb_files += 1
@@ -27,14 +27,14 @@ if __name__ == "__main__":
     print("Nb_files = {}".format(Nb_files))
 
     final_sentences = []
-    f = open("resultat/CGU_FR.txt", "a")
+    f = open("../../files/CGU_FR.txt", "a")
     for sentence in corpus:
         sentences = nltk.sent_tokenize(sentence)
 
         # print(sentences[:5])
 
         clean_sentences = [sentence.lower() for sentence in sentences]
-        clean_sentences = pd.Series(clean_sentences).str.replace("[^a-zA-Zàâçéèêëîïôûùüÿñæœ]", " ")
+        clean_sentences = pd.Series(clean_sentences).str.replace("[^a-zàâçéèêëîïôûùüÿñæœ]", " ")
 
         for text in clean_sentences:
             f.write(str(text) + "\n")

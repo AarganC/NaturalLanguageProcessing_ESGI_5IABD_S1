@@ -33,7 +33,7 @@ Se rendre sur l'url : https://drive.google.com/drive/folders/1uLF7agKs4j2i-DhUTd
 Ne pas oublier de dézipé le fichier `corpus_cgu_folder.zip` si vous souhaité tester le script `../NaturalLanguageProcessing_ESGI_5IABD_S1/modele/Aargan/check_important_word_in_sentences.py` et `../NaturalLanguageProcessing_ESGI_5IABD_S1/modele/Aargan/check_important_word_in_sentences_en.py`.
 - `vectors.txt` Vecteur de mots en français dans 24 de corpus.
 - `vector_2.txt` Vecteur de mots en français dans 1206 corpus. Attention un filtre est appliqué sur les sentences pour récupéré seulement celle en français. 
-- `vector_en.txt` Vecteur de mots en français dans 1206 corpus. Attention un filtre est appliqué sur les sentences pour récupéré seulement celle en Anglais.
+- `vector_en.txt` Vecteur de mots en français dans un peu plus de 900 corpus. Attention un filtre est appliqué sur les sentences pour récupéré seulement celle en Anglais.
 - `top_word.txt` Liste des mots ayants le plus d'occurence dans les phrase en français. 
 - `top_word_en.txt` Liste des mots ayants le plus d'occurence dans les phrase en anglais.
 - `corpus_cgu_folder.zip` Dossier contenant l'ensemble de nos corpus récupérer
