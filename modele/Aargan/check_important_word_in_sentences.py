@@ -72,7 +72,7 @@ if __name__ == "__main__":
     print(3)
 
     most_freq = heapq.nlargest(200, wordfreq, wordfreq.get)
-    f = open("resultat/top_word.txt", "a")
+    f = open("../../files/top_word.txt", "a")
     for word in most_freq:
         f.write(str(word) + " " + str(wordfreq[word]) + "\n")
     f.close()

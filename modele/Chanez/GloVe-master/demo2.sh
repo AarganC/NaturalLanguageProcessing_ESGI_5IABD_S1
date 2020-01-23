@@ -7,12 +7,12 @@ set -e
 make
 
 
-CORPUS=CGU_FR.txt
-VOCAB_FILE=top_word.txt
+CORPUS=../../../files/CGU_FR.txt
+VOCAB_FILE=../../../files/top_word.txt
 COOCCURRENCE_FILE=cooccurrence.bin
 COOCCURRENCE_SHUF_FILE=cooccurrence.shuf.bin
 BUILDDIR=build
-SAVE_FILE=vectors
+SAVE_FILE=../../../files/vectors
 VERBOSE=5
 MEMORY=4.0
 VOCAB_MIN_COUNT=2

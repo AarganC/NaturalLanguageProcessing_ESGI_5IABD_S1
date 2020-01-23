@@ -25,8 +25,8 @@ modele/Chanez/GloVe-master/vectors_2.txt
 modele/Chanez/GloVe-master/vectors_en.bin
 modele/Chanez/GloVe-master/vectors_en.txt
 files/top_word_en.txt
+files/top_word.txt
 files/vectors.txt
 files/vectors_2.txt
 files/vectors_en.txt
-
-
+files/corpus_cgu_folder.zip
