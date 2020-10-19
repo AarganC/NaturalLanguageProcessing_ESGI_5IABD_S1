@@ -4,8 +4,11 @@ import os
 import glob
 import re
 import errno
+import en_core_web_sm
 
-nlp_en = spacy.load('en_core_web_md')
+# nlp_en = spacy.load('en_core_web_md')
+nlp_en = en_core_web_sm.load()
+
 def openText(folder,name):
     with open(os.path.join('Company_folder_files_clean/'+folder+'/'+name+'.txt'), 'r', encoding='utf-8') as f:
         text = f.read()
